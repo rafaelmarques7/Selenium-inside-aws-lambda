@@ -1,0 +1,19 @@
+service: selenium-docker-lambda
+
+provider:
+  name: aws
+  profile: PROFILE
+  region: REGION
+  stage: 'prod'
+  ecr:
+    images:
+      img:
+        path: ./
+        platform: linux/amd64
+
+functions:
+  demo:
+    timeout: 60
+    memorySize: 2048
+    image:
+      name: img
