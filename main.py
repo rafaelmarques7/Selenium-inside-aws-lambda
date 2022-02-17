@@ -1,6 +1,3 @@
-import json
-import time
-import requests
 from selenium import webdriver
 from tempfile import mkdtemp
 
@@ -22,8 +19,10 @@ def instantiate_browser():
     options.add_argument("--remote-debugging-port=9222")
 
     # use this to point to local the chromedriver location
-    driver = webdriver.Chrome("/usr/local/bin/chromedriver")
-    # driver = webdriver.Chrome("/opt/chromedriver", options=options)
+    # driver = webdriver.Chrome("/usr/local/bin/chromedriver")
+
+    # use this when running as docker
+    driver = webdriver.Chrome("/opt/chromedriver", options=options)
     return driver
 
 
@@ -32,4 +31,4 @@ def handler(event=None, context=None):
     driver = instantiate_browser()
 
     driver.get("https://example.com")
-    print(driver.sourcepage_source_code)
+    print(driver.page_source)

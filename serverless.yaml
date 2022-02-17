@@ -1,9 +1,9 @@
-service: selenium-docker-lambda
+service: selenium-lambda
 
 provider:
   name: aws
-  profile: PROFILE
-  region: REGION
+  profile: ${env:AWS_PROFILE, 'profile-name'}
+  region: ${env:AWS_REGION, 'eu-west-1'}
   stage: 'prod'
   ecr:
     images:
@@ -12,7 +12,7 @@ provider:
         platform: linux/amd64
 
 functions:
-  demo:
+  f_example:
     timeout: 60
     memorySize: 2048
     image:

@@ -14,11 +14,10 @@ RUN yum install atk cups-libs gtk3 libXcomposite alsa-lib \
     xorg-x11-xauth dbus-glib dbus-glib-devel -y
 
 RUN pip install selenium
-RUN pip install requests
 
 COPY --from=build /opt/chrome-linux /opt/chrome
 COPY --from=build /opt/chromedriver /opt/
 
-COPY test.py ./
+COPY main.py ./
 
-CMD [ "test.handler" ]
+CMD [ "main.handler" ]
